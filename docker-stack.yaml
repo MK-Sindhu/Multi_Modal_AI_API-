@@ -1,0 +1,34 @@
+services:
+  api:
+    image: api:latest
+
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+        mode: ingress
+
+    environment:
+      - IMAGE_API_URL=${IMAGE_API_URL}
+      - IMAGE_API_KEY=${IMAGE_API_KEY}
+      - TRANSFORMER_NER_MODEL=${TRANSFORMER_NER_MODEL}
+      - ULCA_USER_ID=${ULCA_USER_ID}
+      - ULCA_API_KEY=${ULCA_API_KEY}
+      - MEITY_PIPELINE_ID=${MEITY_PIPELINE_ID}
+      - HOST=${HOST}
+      - PORT=${PORT}
+
+
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 1
+        delay: 5s
+      placement:
+        constraints:
+          - node.role == worker
+          #- node.labels.api-node == true
+
+          

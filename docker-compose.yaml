@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  api:
+    build: 
+      # get docker file from the current directory
+      context: .
+    # custom image name
+    image: api:latest
+    # port mapping
+    ports:
+      - "8000:8000"
+    environment:
+      # envs taken from docker-compose.yaml
+      - IMAGE_API_URL=${IMAGE_API_URL}
+      - IMAGE_API_KEY=${IMAGE_API_KEY}
+      - TRANSFORMER_NER_MODEL=${TRANSFORMER_NER_MODEL}
+      - ULCA_USER_ID=${ULCA_USER_ID}
+      - ULCA_API_KEY=${ULCA_API_KEY}
+      - MEITY_PIPELINE_ID=${MEITY_PIPELINE_ID}
+      - HOST=${HOST}
+      - PORT=${PORT}
+    volumes:
+      # attach volume
+      - ./audios:/usr/src/app/audios/
