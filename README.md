@@ -1,4 +1,4 @@
-# Assignment 2 Report
+# Multi_Modal_AI_API
 ## Repo Structure
 Following is the repo structure
 ```
